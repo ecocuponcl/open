@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "buildCommand": "cd ../.. && pnpm install && pnpm build --filter=@eco/web...",
+  "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
+  "outputDirectory": ".next",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "public": true,
+  "github": {
+    "enabled": true,
+    "silent": true
+  },
+  "team": "team_10mYuWeoXlkAkqYTu59hOZnv",
+  "domains": ["www.ecocupon.cl"],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "ecocupons-projects.vercel.app"
+        }
+      ],
+      "destination": "https://www.ecocupon.cl/:path*",
+      "permanent": true
+    }
+  ]
+}

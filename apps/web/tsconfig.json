@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "target": "ES2017",
+    "baseUrl": ".",
+    "paths": {
+      "@eco/ui": [
+        "../../packages/ui/src"
+      ],
+      "@eco/ui/*": [
+        "../../packages/ui/src/*"
+      ],
+      "@eco/database": [
+        "../../packages/database/src"
+      ],
+      "@eco/database/*": [
+        "../../packages/database/src/*"
+      ],
+      "@eco/shared": [
+        "../../packages/shared/src"
+      ],
+      "@eco/shared/*": [
+        "../../packages/shared/src/*"
+      ]
+    },
+    "strictNullChecks": true
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
