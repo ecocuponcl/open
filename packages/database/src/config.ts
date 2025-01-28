@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 const databaseConfigSchema = z.object({
-  SUPABASE_URL: z.string().url(),
-  SUPABASE_ANON_KEY: z.string().min(1),
-  SUPABASE_PROJECT_ID: z.string().optional(),
+  SUPABASE_URL: z.string().url().default('http://localhost:54321'),
+  SUPABASE_ANON_KEY: z.string().min(1).default('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'),
+  SUPABASE_PROJECT_ID: z.string().default('local'),
   SUPABASE_AUTH_CALLBACK_URL: z.string().url().optional(),
   GOOGLE_CLIENT_ID: z.string().optional(),
 });

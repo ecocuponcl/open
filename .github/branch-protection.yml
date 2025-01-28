@@ -1,0 +1,26 @@
+# Branch protection rules for the main branch
+name: Branch Protection Rules
+
+protection:
+  main:
+    # Require pull request reviews before merging
+    required_pull_request_reviews:
+      required_approving_review_count: 1
+      dismiss_stale_reviews: true
+      require_code_owner_reviews: true
+
+    # Require status checks to pass before merging
+    required_status_checks:
+      strict: true
+      contexts:
+        - "build"
+        - "test"
+        - "lint"
+
+    # Prevent force pushes
+    enforce_admins: true
+    allow_force_pushes: false
+    allow_deletions: false
+
+    # Include administrators in restrictions
+    restrictions: null
