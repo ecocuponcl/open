@@ -12,6 +12,7 @@
     "silent": true
   },
   "team": "team_10mYuWeoXlkAkqYTu59hOZnv",
+  "projectId": "prj_B7Lo8EvqHkOc1rCvLH15hxbh0FHt",
   "domains": ["www.ecocupon.cl"],
   "redirects": [
     {
@@ -25,5 +26,10 @@
       "destination": "https://www.ecocupon.cl/:path*",
       "permanent": true
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "NODE_VERSION": "22.x"
+    }
+  }
 }

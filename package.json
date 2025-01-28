@@ -21,8 +21,9 @@
     "dev:mobile": "pnpm run dev --filter=mobile",
     "test": "turbo run test",
     "type-check": "turbo run type-check",
+
     "vercel-build": "pnpm install && turbo run build --filter=web...",
-    "postinstall": "corepack enable"
+    "prepare": "corepack enable"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.2",
