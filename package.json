@@ -21,7 +21,7 @@
     "dev:mobile": "pnpm run dev --filter=mobile",
     "test": "turbo run test",
     "type-check": "turbo run type-check",
-    "vercel-build": "pnpm install && turbo run build --filter=web...",
+    "vercel-build": "pnpm install && turbo run build --filter=@eco/web...",
     "prepare": "corepack enable"
   },
   "dependencies": {
