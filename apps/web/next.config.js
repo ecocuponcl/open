@@ -9,6 +9,14 @@ const nextConfig = {
   experimental: {
     serverActions: {
       allowedOrigins: ['localhost:3000', 'www.ecocupon.cl']
+    },
+    turbo: {
+      resolveAlias: {
+        '@eco/ui': '../../packages/ui',
+        '@eco/shopify': '../../packages/shopify',
+        '@eco/database': '../../packages/database',
+        '@eco/shared': '../../packages/shared'
+      }
     }
   },
   poweredByHeader: false,
