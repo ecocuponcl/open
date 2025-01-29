@@ -2,6 +2,11 @@
   "name": "@eco/database",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": "9.x"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

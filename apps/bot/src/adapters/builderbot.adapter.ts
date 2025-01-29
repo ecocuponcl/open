@@ -9,6 +9,7 @@ import { createLogger } from '../utils/logger';
 import * as path from 'path';
 import { EventEmitter } from 'events';
 import QRCode from 'qrcode-terminal';
+import { BuilderBotClient } from './builderbot.client';
 
 const logger = createLogger('WhatsAppAdapter');
 
@@ -27,11 +28,16 @@ export class WhatsAppAdapter extends EventEmitter {
   private socket!: ReturnType<typeof makeWASocket>;
   private store: ReturnType<typeof makeInMemoryStore>;
   private authPath: string;
+  private builderBot: BuilderBotClient;
 
   constructor() {
     super();
     this.authPath = path.join(process.cwd(), 'auth_info_baileys');
     this.store = makeInMemoryStore({});
+    this.builderBot = new BuilderBotClient(
+      process.env.BUILDERBOT_TOKEN || '',
+      process.env.BUILDERBOT_ID || ''
+    );
     this.initialize();
   }
 
@@ -117,7 +123,7 @@ export class WhatsAppAdapter extends EventEmitter {
       const messages = Array.isArray(message) ? message : [message];
       
       for (const text of messages) {
-        await this.socket.sendMessage(to, { text });
+        await this.builderBot.sendMessage(to, { content: text });
       }
     } catch (error) {
       logger.error('Error al enviar mensaje:', error);
@@ -125,11 +131,11 @@ export class WhatsAppAdapter extends EventEmitter {
     }
   }
 
-  async sendImage(to: string, image: Buffer, caption?: string) {
+  async sendImage(to: string, imageUrl: string, caption?: string) {
     try {
-      await this.socket.sendMessage(to, {
-        image,
-        caption
+      await this.builderBot.sendMessage(to, {
+        content: caption || '',
+        mediaUrl: imageUrl
       });
     } catch (error) {
       logger.error('Error al enviar imagen:', error);

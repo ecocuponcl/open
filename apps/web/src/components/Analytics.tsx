@@ -1,5 +1,9 @@
 'use client';
 
+import Script from 'next/script';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+
 declare global {
   interface Window {
     dataLayer: Array<Record<string, unknown>>;
@@ -7,20 +11,14 @@ declare global {
   }
 }
 
-import Script from 'next/script';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
-
-const GA_MEASUREMENT_ID = 'G-7W4FV7FLV8';
-
-export default function GoogleAnalytics() {
+export default function Analytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     if (pathname) {
-      window.gtag('config', GA_MEASUREMENT_ID, {
-        page_path: pathname + searchParams?.toString(),
+      window.gtag('config', 'G-7W4FV7FLV8', {
+        page_path: pathname + (searchParams?.toString() || ''),
       });
     }
   }, [pathname, searchParams]);
@@ -29,7 +27,7 @@ export default function GoogleAnalytics() {
     <>
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        src="https://www.googletagmanager.com/gtag/js?id=G-7W4FV7FLV8"
       />
       <Script
         id="google-analytics"
@@ -39,7 +37,7 @@ export default function GoogleAnalytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
+            gtag('config', 'G-7W4FV7FLV8');
           `,
         }}
       />
