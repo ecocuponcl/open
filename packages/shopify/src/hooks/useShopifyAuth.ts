@@ -1,44 +1,40 @@
-import { useAppBridge } from '@shopify/app-bridge-react';
-import { Redirect } from '@shopify/app-bridge/actions';
-import { getSessionToken } from '@shopify/app-bridge-utils';
 import { useEffect, useState } from 'react';
+import { ClientApplication, AppBridgeState } from '@shopify/app-bridge';
+import { getSessionToken } from '@shopify/app-bridge-utils';
+
+declare global {
+  interface Window {
+    shopify: ClientApplication<AppBridgeState>;
+  }
+}
 
 export function useShopifyAuth() {
-  const app = useAppBridge();
-  const redirect = Redirect.create(app);
-  const [sessionToken, setSessionToken] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [sessionToken, setSessionToken] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchSessionToken = async () => {
+    async function authenticate() {
       try {
-        setIsLoading(true);
-        const token = await getSessionToken(app);
-        setSessionToken(token);
+        if (!window.shopify) {
+          throw new Error('Shopify App Bridge not initialized');
+        }
+
+        const token = await getSessionToken(window.shopify);
+        if (token) {
+          setIsAuthenticated(true);
+          setSessionToken(token);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err : new Error('Failed to get session token'));
-        // Redirect to auth if session is invalid
-        redirect.dispatch(Redirect.Action.APP, '/auth');
+        setError(err instanceof Error ? err : new Error('Authentication failed'));
       } finally {
         setIsLoading(false);
       }
-    };
+    }
 
-    fetchSessionToken();
-  }, [app, redirect]);
+    authenticate();
+  }, []);
 
-  return {
-    sessionToken,
-    isLoading,
-    error,
-    refresh: () => {
-      setIsLoading(true);
-      setError(null);
-      getSessionToken(app)
-        .then(setSessionToken)
-        .catch(setError)
-        .finally(() => setIsLoading(false));
-    },
-  };
+  return { isAuthenticated, isLoading, error, sessionToken };
 }

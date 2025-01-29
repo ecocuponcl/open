@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Provider } from '@shopify/app-bridge-react';
+import { createApp } from '@shopify/app-bridge';
 import type { ClientApplication } from '@shopify/app-bridge';
 import { getSessionToken } from "@shopify/app-bridge-utils";
 
@@ -10,8 +10,8 @@ interface AppBridgeProviderProps {
 }
 
 export function AppBridgeProvider({ children, host, apiKey }: AppBridgeProviderProps) {
-  const config = useMemo(
-    () => ({
+  useMemo(
+    () => createApp({
       host: host,
       apiKey: apiKey,
       forceRedirect: true,
@@ -19,7 +19,7 @@ export function AppBridgeProvider({ children, host, apiKey }: AppBridgeProviderP
     [host, apiKey]
   );
 
-  return <Provider config={config}>{children}</Provider>;
+  return <>{children}</>;
 }
 
 // Utility function to get session token
