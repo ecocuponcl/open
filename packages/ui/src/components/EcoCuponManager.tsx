@@ -1,18 +1,16 @@
 'use client';
 
-import { Card, Text, BlockStack } from '@shopify/polaris';
-
 export const EcoCuponManager = () => {
   return (
-    <Card>
-      <BlockStack gap="400">
-        <Text as="h2" variant="headingLg">
+    <div className="card">
+      <div className="block-stack">
+        <h2 className="heading-lg">
           Gestor de Cupones Deshabilitado
-        </Text>
-        <Text as="p" variant="bodyMd">
+        </h2>
+        <p className="body-md">
           El sistema de gestión de cupones está temporalmente en mantenimiento.
-        </Text>
-      </BlockStack>
-    </Card>
+        </p>
+      </div>
+    </div>
   );
 };
