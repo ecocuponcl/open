@@ -1,10 +1,31 @@
 /** @type {import('next').NextConfig} */
+const { createSupabaseClient } = require('@supabase/auth-helpers-nextjs');
+
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@eco/ui', '@eco/shopify'],
   output: 'standalone',
+  // Configure server to listen on all network interfaces
+  hostname: '0.0.0.0',
+  port: 3000,
+  // Configure server options
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'www.ecocupon.cl']
+    },
+    turbo: {
+      resolveAlias: {
+        '@eco/ui': '../../packages/ui',
+        '@eco/shopify': '../../packages/shopify',
+        '@eco/database': '../../packages/database',
+        '@eco/shared': '../../packages/shared'
+      }
+    }
+  },
   env: {
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+    SUPABASE_URL: process.env.SUPABASE_URL,
+    SUPABASE_KEY: process.env.SUPABASE_KEY
   },
   experimental: {
     serverActions: {
