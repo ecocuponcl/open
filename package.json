@@ -16,13 +16,23 @@
     "@radix-ui/react-select": "^2.1.5",
     "@vercel/analytics": "1.4.1",
     "@vercel/speed-insights": "1.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "eslint": "8.56.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@turbo/codemod": "2.3.4",
     "prettier": "^3.4.2",
     "turbo": "^2.3.4",
     "typescript": "^5.7.3"
+  },
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@shopify/app-bridge-react": "4.1.6",
+    "@shopify/polaris": "13.9.2",
+    "@shopify/app-bridge": "3.7.10",
+    "@shopify/app-bridge-utils": "3.5.1",
+    "@shopify/shopify-api": "11.8.0"
   }
 }

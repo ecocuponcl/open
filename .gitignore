@@ -42,3 +42,5 @@ yarn.lock
 
 # Turbo
 .turbo/
+
+*storybook.log
