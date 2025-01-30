@@ -1,13 +1,14 @@
 module.exports = {
   root: true,
   extends: [
-    'next/core-web-vitals',
-    'plugin:@typescript-eslint/recommended'
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'next/core-web-vitals'
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   parserOptions: {
-    ecmaVersion: 2021,
+    ecmaVersion: 'latest',
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true

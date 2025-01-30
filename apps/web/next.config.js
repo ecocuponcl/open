@@ -3,12 +3,10 @@ const { createSupabaseClient } = require('@supabase/auth-helpers-nextjs');
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@eco/ui', '@eco/shopify'],
+  transpilePackages: ['@eco/ui'],
   output: 'standalone',
-  // Configure server to listen on all network interfaces
   hostname: '0.0.0.0',
   port: 3000,
-  // Configure server options
   experimental: {
     serverActions: {
       allowedOrigins: ['localhost:3000', 'www.ecocupon.cl']
@@ -16,7 +14,6 @@ const nextConfig = {
     turbo: {
       resolveAlias: {
         '@eco/ui': '../../packages/ui',
-        '@eco/shopify': '../../packages/shopify',
         '@eco/database': '../../packages/database',
         '@eco/shared': '../../packages/shared'
       }
